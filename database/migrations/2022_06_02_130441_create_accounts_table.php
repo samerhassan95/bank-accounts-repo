@@ -18,10 +18,6 @@ class CreateAccountsTable extends Migration
             $table->bigInteger('account_number')->unique();
             $table->decimal('balance');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete();
-            $table->unsignedBigInteger('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currency')->restrictOnDelete();
-            $table->boolean('active');
             $table->timestamps();
         });
     }
