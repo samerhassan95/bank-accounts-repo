@@ -24,7 +24,7 @@ class CreateTransactionsTable extends Migration
             $table->foreign('received_acc_id')->references('id')->on('accounts')->restrictOnDelete();
 
             $table->unsignedBigInteger('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currency')->restrictOnDelete();
+            $table->foreign('currency_id')->references('id')->on('currencies')->restrictOnDelete();
 
             $table->timestamps();
         });

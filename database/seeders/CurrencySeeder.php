@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Currency;
 
 class CurrencySeeder extends Seeder
 {
@@ -13,8 +14,9 @@ class CurrencySeeder extends Seeder
      */
     public function run()
     {
+
         Currency::factory()
-        ->count(1000)
+        ->count(10)
         ->create();
     }
 }

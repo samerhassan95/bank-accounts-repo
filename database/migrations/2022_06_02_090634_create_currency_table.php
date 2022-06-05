@@ -13,10 +13,10 @@ class CreateCurrencyTable extends Migration
      */
     public function up()
     {
-        Schema::create('currency', function (Blueprint $table) {
+        Schema::create('currencies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->float('rate');
+            $table->float('rate',10, 5);
             $table->timestamps();
             $table->boolean('active');
         });
@@ -29,6 +29,6 @@ class CreateCurrencyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('currency');
+        Schema::dropIfExists('currencies');
     }
 }

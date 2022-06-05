@@ -1,12 +1,13 @@
 <?php
 
 namespace Database\Factories;
-
+// use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
+    // protected $faker;
     /**
      * Define the model's default state.
      *
@@ -22,7 +23,6 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
-
     /**
      * Indicate that the model's email address should be unverified.
      *

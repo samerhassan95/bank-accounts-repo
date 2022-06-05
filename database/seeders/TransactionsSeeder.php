@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Transactions;
 
 class TransactionsSeeder extends Seeder
 {
@@ -13,13 +14,14 @@ class TransactionsSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            AccountSeeder::class,
-            CurrencySeeder::class,
-        ]);
+        // $this->call([
+        //     AccountSeeder::class,
+        // ]);
         Transactions::factory()
-        ->count(1000)
+        ->count(5)
+        // ->for(Account::factory())
         ->create();
-    
     }
 }
+
+
