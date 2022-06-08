@@ -28,9 +28,7 @@ class ListController extends Controller
 
     //create new acc
     public function create(Request $request, Account $account){
-        if (! Gate::allows('delete', $account)) {
-            abort(403);
-        }
+        Gate::authorize('create', $account);
         $account = Account::create($request->all());
         return response()->json($account);
     }
@@ -40,9 +38,7 @@ class ListController extends Controller
     //update info
     public function update(Request $request, $id, Account $account)
     {
-        if (! Gate::allows('update', $account)) {
-            abort(403);
-        }
+         Gate::authorize('update', $account);
             $account = Account::find($id);
             if(is_null($account)) {
                 return response()->json(['message' => 'Account Not Found'], 404);
@@ -56,9 +52,7 @@ class ListController extends Controller
     //delete acc
     public function delete (Request $request, $id, Account $account)
     {
-        if (! Gate::allows('delete', $account)) {
-            abort(403);
-        }
+        Gate::authorize('delete', $account);
         $account = Account::find($id);
         if(is_null($account)) {
             return response()->json(['message' => 'Account Not Found'], 404);
