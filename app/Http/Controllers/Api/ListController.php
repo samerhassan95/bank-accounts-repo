@@ -6,6 +6,7 @@ use App\Models\Account;
 use App\Http\Resources\ListResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ListController extends Controller
 {
@@ -26,7 +27,10 @@ class ListController extends Controller
 
 
     //create new acc
-    public function create(Request $request){
+    public function create(Request $request, Account $account){
+        if (! Gate::allows('delete', $account)) {
+            abort(403);
+        }
         $account = Account::create($request->all());
         return response()->json($account);
     }
@@ -34,21 +38,27 @@ class ListController extends Controller
 
 
     //update info
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, Account $account)
     {
-            $accounts = Account::find($id);
-            if(is_null($accounts)) {
+        if (! Gate::allows('update', $account)) {
+            abort(403);
+        }
+            $account = Account::find($id);
+            if(is_null($account)) {
                 return response()->json(['message' => 'Account Not Found'], 404);
             }
-            $accounts->update($request->all());
+            $account->update($request->all());
             return response()->json($account);
     }
 
 
 
     //delete acc
-    public function delete (Request $request, $id)
+    public function delete (Request $request, $id, Account $account)
     {
+        if (! Gate::allows('delete', $account)) {
+            abort(403);
+        }
         $account = Account::find($id);
         if(is_null($account)) {
             return response()->json(['message' => 'Account Not Found'], 404);
