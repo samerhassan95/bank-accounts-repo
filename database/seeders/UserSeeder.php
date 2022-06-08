@@ -15,12 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call([
-        //     AccountSeeder::class
-        // ]);
-        User::factory()
-        ->count(1000)
-        // ->has(Account::factory()->count(3))
-        ->create();
+        User::factory()->count(1000)->create();
     }
 }

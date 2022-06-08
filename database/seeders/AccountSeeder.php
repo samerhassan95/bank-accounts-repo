@@ -14,14 +14,8 @@ class AccountSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call([
-        //     CurrencySeeder::class
-        // ]);
         Account::factory()
         ->count(3)
-        // ->for(User::factory())
-        // ->has(Currency::factory()->count(1))
-        // ->has(Transactions::factory()->count(5))
         ->create();
     }
 }

@@ -14,13 +14,7 @@ class TransactionsSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call([
-        //     AccountSeeder::class,
-        // ]);
-        Transactions::factory()
-        ->count(5)
-        // ->for(Account::factory())
-        ->create();
+        Transactions::factory()->count(5)->create();
     }
 }
 
