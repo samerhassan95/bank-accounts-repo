@@ -17,18 +17,18 @@ class ListController extends Controller
 
     //get one acc
     public function info($id){
-        $accounts = Account::find($id);
-        if(is_null($accounts)) {
+        $account = Account::find($id);
+        if(is_null($account)) {
             return response()->json(['message' => 'Account Not Found'], 404);
         }
-        return response()->json($accounts::find($id), 200);
+        return response()->json($account, 200);
     }
 
 
     //create new acc
     public function create(Request $request){
-        $accounts = Account::create($request->all());
-        return $request->all();
+        $account = Account::create($request->all());
+        return response()->json($account);
     }
 
 
@@ -41,7 +41,7 @@ class ListController extends Controller
                 return response()->json(['message' => 'Account Not Found'], 404);
             }
             $accounts->update($request->all());
-            return response($accounts, 200);
+            return response()->json($account);
     }
 
 
@@ -49,12 +49,12 @@ class ListController extends Controller
     //delete acc
     public function delete (Request $request, $id)
     {
-        $accounts = Account::find($id);
-        if(is_null($accounts)) {
+        $account = Account::find($id);
+        if(is_null($account)) {
             return response()->json(['message' => 'Account Not Found'], 404);
         }
-        $accounts->delete();
-        return response()->json(null, 204);
+        $account->delete();
+        return response()->json(['message' => 'Success']);
 
     }
 
