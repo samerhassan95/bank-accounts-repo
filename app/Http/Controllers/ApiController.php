@@ -57,7 +57,7 @@ class ApiController extends Controller
         }
 
         //Request is validated
-        //Crean token
+        //Create token
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
                 return response()->json([
@@ -80,6 +80,8 @@ class ApiController extends Controller
         ]);
     }
 
+
+    //logout
     public function logout(Request $request)
     {
         //valid credential
@@ -108,6 +110,7 @@ class ApiController extends Controller
         }
     }
 
+    //get_user
     public function get_user(Request $request)
     {
         $this->validate($request, [

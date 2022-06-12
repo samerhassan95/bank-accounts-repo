@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ListController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ApiController;
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,8 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->get('/user', function (Account $account) {
+    return $account;
 });
 //listing
 Route::get('/list', [ListController::class,'index']);
@@ -24,15 +25,7 @@ Route::get('/list', [ListController::class,'index']);
 //get
 Route::get('/list/{id}', [ListController::class,'info']);
 
-//create
-Route::post('/create-acc', [ListController::class,'create']);
 
-//update
-Route::put('/update-acc/{id}', [ListController::class,'update']);
-
-
-//delete
-Route::delete('/delete-acc/{id}', [ListController::class,'delete']);
 
 
 
@@ -42,4 +35,13 @@ Route::post('register', [ApiController::class, 'register']);
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('logout', [ApiController::class, 'logout']);
     Route::get('get_user', [ApiController::class, 'get_user']);
+    //create
+Route::post('/create-acc', [ListController::class,'create']);
+
+//update
+Route::put('/update-acc/{id}', [ListController::class,'update']);
+
+
+//delete
+Route::delete('/delete-acc/{id}', [ListController::class,'delete']);
 });
