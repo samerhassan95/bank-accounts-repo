@@ -15,29 +15,27 @@ class AccountPolicy
      *
      * @return void
      */
-
+//update
     public function update(User $user, Account $account)
     {
-        // dd($user->id, $account->user_id, $user->can('edit-acc',Account::class));
         return $user->id == $account->user_id
-             && $user->can('edit-acc',Account::class);
-        }
-
-
-    public function delete(User $user, Account $account)
-    {
-
-        return $user->id == $account->user_id
-             && $user->can('edit-acc',Account::class);
-
-
+             && $user->can('update-acc',Account::class);
     }
 
+
+
+//delete
+    public function delete(User $user, Account $account)
+    {
+        return $user->id == $account->user_id
+             && $user->can('delete-acc',Account::class);
+    }
+
+
+//create
     public function create(User $user, Account $account)
     {
-
         return $user->id == $account->user_id
-             && $user->can('edit-acc',Account::class);
-
+             && $user->can('create-acc',Account::class);
     }
 }

@@ -17,9 +17,9 @@ class AdminUserSeeder extends Seeder
     public function run()
     {
     $user=User::find(1);
-    Bouncer::allow($user)->to('edit-acc', Account::class);
-    Bouncer::allow($user)->to('view-acc', Account::class);
-
+    Bouncer::allow($user)->to('update-acc', Account::class);
+    Bouncer::allow($user)->to('delete-acc', Account::class);
+    Bouncer::allow($user)->to('create-acc', Account::class);
 
     }
 }
