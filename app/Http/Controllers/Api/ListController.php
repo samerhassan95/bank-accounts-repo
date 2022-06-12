@@ -7,6 +7,16 @@ use App\Http\Resources\ListResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ApiController;
+use JWTAuth;
+use App\Models\User;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use App\Http\Middleware;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Validator;
+use Bouncer;
+
 
 class ListController extends Controller
 {
@@ -36,10 +46,10 @@ class ListController extends Controller
 
 
     //update info
-    public function update(Request $request, $id, Account $account)
+    public function update(Request $request, $id)
     {
-         Gate::authorize('update', $account);
-            $account = Account::find($id);
+        $account = Account::find($id);
+        Gate::authorize('update', $account);
             if(is_null($account)) {
                 return response()->json(['message' => 'Account Not Found'], 404);
             }
@@ -50,10 +60,10 @@ class ListController extends Controller
 
 
     //delete acc
-    public function delete (Request $request, $id, Account $account)
+    public function delete (Request $request, $id)
     {
-        Gate::authorize('delete', $account);
         $account = Account::find($id);
+        Gate::authorize('delete', $account);
         if(is_null($account)) {
             return response()->json(['message' => 'Account Not Found'], 404);
         }
