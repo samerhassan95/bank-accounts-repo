@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Account;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 class User extends Authenticatable implements JWTSubject
@@ -58,9 +59,5 @@ class User extends Authenticatable implements JWTSubject
     return $this->hasMany(Account::class, User::class);
 }
 
-// public function transactions()
-// {
-//     return $this->hasMany(Transactions::class, User::class);
-// }
 }
 

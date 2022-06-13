@@ -4,22 +4,22 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use App\Models\Transactions;
+use App\Models\Account;
+use App\Models\Currency;
 
-class Currency extends Resource
+class Transactions extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Currency::class;
+    public static $model = \App\Models\Transactions::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -35,7 +35,6 @@ class Currency extends Resource
      */
     public static $search = [
         'id',
-        'name'
     ];
 
     /**
@@ -48,14 +47,16 @@ class Currency extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            HasMany::make('Transactions', 'transactions', \App\Nova\Transactions::class),
-            Text::make(__('Name'), 'name')->sortable(),
-            Number::make(__('Rate'), 'rate')->sortable(),
-            Boolean::make(__('Active'), 'active')->sortable(),
+            Number::make(__('Amount'), 'amount')->sortable(),
+            HasOne::make('Currency Id', 'transactionCurrency', \App\Nova\Currency::class),
+            BelongsTo::make('Send Account Id', 'senderAccount', \App\Nova\Account::class),
+            BelongsTo::make('Received Account Id', 'receiverAccount', \App\Nova\Account::class),
             Date::make('Created At')->format('DD MMM YYYY'),
             Date::make('Updated At')->format('DD MMM YYYY'),
         ];
     }
+
+
     /**
      * Get the cards available for the request.
      *

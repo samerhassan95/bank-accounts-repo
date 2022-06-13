@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Currency;
+use App\Models\Transactions;
 
 class Account extends Model
 {
@@ -17,7 +20,7 @@ class Account extends Model
 
     public function user()
 {
-    return $this->belongsTo(Users::class);
+    return $this->belongsTo(User::class);
 }
 
 public function hasCurrency()

@@ -5,11 +5,15 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use App\Nova\User;
+use App\Models\User;
+use App\Models\Currency;
+use App\Models\Transactions;
 
 class Account extends Resource
 {
@@ -25,7 +29,7 @@ class Account extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -34,6 +38,7 @@ class Account extends Resource
      */
     public static $search = [
         'id',
+        'account_number'
     ];
 
     /**
@@ -46,11 +51,11 @@ class Account extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            // BelongsTo::make(__('User Name'), 'Name', 'App\Nova\User'),
+            BelongsTo::make('User Id', 'user', \App\Nova\User::class),
+            HasOne::make('Currency Id', 'hasCurrency', \App\Nova\Currency::class),
+            HasMany::make('Transactions', 'makeTransactions', \App\Nova\Transactions::class),
             Number::make(__('Account Number'), 'account_number')->sortable(),
             Number::make(__('Balance'), 'balance')->sortable(),
-            ID::make(__('User Id'), 'user_id')->sortable(),
-            ID::make(__('Currency Id'), 'currency_id')->sortable(),
             Date::make('Created At')->format('DD MMM YYYY'),
             Date::make('Updated At')->format('DD MMM YYYY'),
 
