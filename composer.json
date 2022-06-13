@@ -12,8 +12,16 @@
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
         "silber/bouncer": "v1.0.0-rc.10",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+        "fideloper/proxy": "^4.0",
+        "laravel/nova": "*"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./nova"
+        }
+    ],
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
@@ -61,4 +69,6 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true
+
+
 }
