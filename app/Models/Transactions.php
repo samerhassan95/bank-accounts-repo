@@ -26,7 +26,7 @@ public function receiverAccount()
     return $this->belongsTo(Account::class,'foreign_key','received_acc_id');
 }
 
-public function transactionCurrency()
+public function currency()
 {
     return $this->hasOne(Currency::class);
 }

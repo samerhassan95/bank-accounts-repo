@@ -24,7 +24,6 @@ class CreateAccountsTable extends Migration
         });
     }
 
-
     /**
      * Reverse the migrations.
      *
