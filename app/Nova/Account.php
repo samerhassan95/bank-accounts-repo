@@ -3,21 +3,26 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\HasMany;
-use App\Models\Account;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use App\Models\User;
+use App\Models\Currency;
+use App\Models\Transactions;
 
-class User extends Resource
+class Account extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\\Models\\User';
+    public static $model = \App\Models\Account::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -32,7 +37,8 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id',
+        'account_number'
     ];
 
     /**
@@ -44,26 +50,16 @@ class User extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make(__('ID'), 'id')->sortable(),
+            BelongsTo::make('User Id', 'user', \App\Nova\User::class),
+            HasOne::make('Currency Id', 'hasCurrency', \App\Nova\Currency::class),
+            HasMany::make('Transactions', 'makeTransactions', \App\Nova\Transactions::class),
+            Number::make(__('Account Number'), 'account_number')->sortable(),
+            Number::make(__('Balance'), 'balance')->sortable(),
+            Date::make('Created At')->format('DD MMM YYYY'),
+            Date::make('Updated At')->format('DD MMM YYYY'),
 
-            Gravatar::make()->maxWidth(50),
 
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
-
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
-
-            HasMany::make('Accounts', 'accounts', \App\Nova\Account::class)
         ];
     }
 

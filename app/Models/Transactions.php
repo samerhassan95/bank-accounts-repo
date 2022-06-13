@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Currency;
+use App\Models\Account;
 
 class Transactions extends Model
 {
@@ -24,9 +26,9 @@ public function receiverAccount()
     return $this->belongsTo(Account::class,'foreign_key','received_acc_id');
 }
 
-public function transactionCurrency()
+public function currency()
 {
-    return $this->hasOne(Transactions::class);
+    return $this->hasOne(Currency::class);
 }
 
 }
