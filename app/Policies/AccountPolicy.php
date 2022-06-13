@@ -33,9 +33,10 @@ class AccountPolicy
 
 
 //create
-    public function create(User $user, Account $account)
+    public function create(User $user)
     {
-        return $user->id == $account->user_id
-             && $user->can('create-acc',Account::class);
+        // return $user->id == $account->user_id
+        //      &&
+             return$user->can('create-acc',Account::class);
     }
 }
