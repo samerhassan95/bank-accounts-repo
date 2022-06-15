@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
@@ -14,12 +17,17 @@
         "silber/bouncer": "v1.0.0-rc.10",
         "tymon/jwt-auth": "^1.0",
         "fideloper/proxy": "^4.0",
-        "laravel/nova": "*"
+        "laravel/nova": "*",
+        "acme/priceyodawy": "*"
     },
     "repositories": [
         {
             "type": "path",
             "url": "./nova"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Priceyodawy"
         }
     ],
     "require-dev": {
@@ -69,6 +77,4 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true
-
-
 }
