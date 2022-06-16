@@ -13,9 +13,7 @@ class AccountFactory extends Factory
      * @return array
      */
     public function definition()
-    // $factory->define(Account::class, function (Faker $faker)
     {
-        // dd(User::inRandomOrder()->first()->id);
         return [
             'account_number'=>$this->faker->unique->numberBetween(1,1000),
             'balance'=>$this->faker->randomDigit(15),
