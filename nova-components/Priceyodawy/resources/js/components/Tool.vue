@@ -20,7 +20,7 @@
             </svg>
 
             <h1 class="text-white text-4xl text-90 font-light mb-6">
-                We're in a black hole.
+                Create Account
             </h1>
 
             <p class="text-white-50% text-lg">

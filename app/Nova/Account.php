@@ -14,6 +14,10 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use App\Models\User;
 use App\Models\Currency;
 use App\Models\Transactions;
+use App\Nova\Filters\UserEmailFilter;
+use App\Nova\Filters\DateFromFilter;
+use App\Nova\Filters\DateToFilter;
+
 
 class Account extends Resource
 {
@@ -51,15 +55,13 @@ class Account extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            BelongsTo::make('User Id', 'user', \App\Nova\User::class),
+            BelongsTo::make('User Name', 'user', \App\Nova\User::class),
             HasOne::make('Currency Id', 'hasCurrency', \App\Nova\Currency::class),
             HasMany::make('Transactions', 'makeTransactions', \App\Nova\Transactions::class),
             Number::make(__('Account Number'), 'account_number')->sortable(),
             Number::make(__('Balance'), 'balance')->sortable(),
             Date::make('Created At')->format('DD MMM YYYY'),
             Date::make('Updated At')->format('DD MMM YYYY'),
-
-
         ];
     }
 
@@ -82,7 +84,11 @@ class Account extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new UserEmailFilter,
+            new DateFromFilter,
+            new DateToFilter,
+        ];
     }
 
     /**

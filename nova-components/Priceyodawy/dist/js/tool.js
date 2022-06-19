@@ -717,7 +717,7 @@ var render = function() {
           _c(
             "h1",
             { staticClass: "text-white text-4xl text-90 font-light mb-6" },
-            [_vm._v("\n            We're in a black hole.\n        ")]
+            [_vm._v("\n            Create Account\n        ")]
           ),
           _vm._v(" "),
           _c("p", { staticClass: "text-white-50% text-lg" }, [
