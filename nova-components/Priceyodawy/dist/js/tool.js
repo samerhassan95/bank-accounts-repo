@@ -1494,7 +1494,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -2021,7 +2021,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handleSubmit: function handleSubmit(e) {
             var _this2 = this;
 
-            console.log({ 'balance': this.balance, 'currency': this.selected_currency });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/create-acc', { 'balance': this.balance, 'currency_id': this.selected_currency, 'user_id': 1 }).then(function (response) {
                 console.log({ 'balance': _this2.balance, 'currency': _this2.selected_currency });
             }).catch(function (error) {

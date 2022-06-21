@@ -58,7 +58,6 @@ methods:{
     },
 
 handleSubmit(e){
-    console.log({'balance':this.balance,'currency':this.selected_currency});
     axios.post('/api/create-acc',{'balance':this.balance,'currency_id':this.selected_currency,'user_id':1}).then(
         response =>{
             console.log({'balance':this.balance,'currency':this.selected_currency});
