@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ListController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CurrencyController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +18,8 @@ use App\Http\Controllers\ApiController;
 |
 */
 
+Route::get('/currencies', [CurrencyController::class,'show']);
+Route::post('/create-acc', [ListController::class,'create']);
 Route::middleware('auth:sanctum')->get('/user', function (Account $account) {
     return $account;
 });
@@ -29,14 +33,13 @@ Route::get('/list/{id}', [ListController::class,'info']);
 
 
 
-Route::post('login', [ApiController::class, 'authenticate']);
-Route::post('register', [ApiController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
 
-Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('logout', [ApiController::class, 'logout']);
+Route::group(['middleware' => 'auth:sanctum'], function() {
+    Route::get('logout', [AuthController::class, 'logout']);
     Route::get('get_user', [ApiController::class, 'get_user']);
     //create
-Route::post('/create-acc', [ListController::class,'create']);
 
 //update
 Route::put('/update-acc/{id}', [ListController::class,'update']);

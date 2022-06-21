@@ -7,6 +7,8 @@ use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Acme\Priceyodawy\Priceyodawy;
+use App\Models\Sanctum\PersonalAccessToken;
+use Laravel\Sanctum\Sanctum;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -17,6 +19,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function boot()
     {
+        // Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
         parent::boot();
     }
 

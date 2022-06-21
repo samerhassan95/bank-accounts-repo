@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Currency;
 use App\Models\Transactions;
+// use Laravel\Sanctum\HasApiTokens;
 
 class Account extends Model
 {
