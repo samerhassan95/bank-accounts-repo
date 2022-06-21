@@ -58,7 +58,7 @@ class Account extends Resource
             BelongsTo::make('User Name', 'user', \App\Nova\User::class),
             HasOne::make('Currency Id', 'hasCurrency', \App\Nova\Currency::class),
             HasMany::make('Transactions', 'makeTransactions', \App\Nova\Transactions::class),
-            Number::make(__('Account Number'), 'account_number')->sortable(),
+            Text::make(__('Account Number'), 'account_number')->sortable(),
             Number::make(__('Balance'), 'balance')->sortable(),
             Date::make('Created At')->format('DD MMM YYYY'),
             Date::make('Updated At')->format('DD MMM YYYY'),

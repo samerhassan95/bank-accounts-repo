@@ -15,7 +15,7 @@ class CurrencyFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->name(),
+            'name'=>$this->faker->randomElement(['USD','EURO','GBP','AUD','NZD','CHF','CNF','KUD','EGP','UAD']),
             'active' =>$this->faker->boolean(),
             'rate'=>$this->faker->randomFloat(2, 50, 1000)
         ];

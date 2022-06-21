@@ -12,7 +12,7 @@
         "build-priceyodawy-prod": "cd nova-components/Priceyodawy && npm run prod"
     },
     "devDependencies": {
-        "axios": "^0.21",
+        "axios": "^0.21.4",
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.19",
         "node-sass": "^7.0.1",
@@ -36,6 +36,7 @@
     },
     "homepage": "https://github.com/samerhassan95/bank-accounts-repo#readme",
     "dependencies": {
-        "sass": "^1.52.3"
+        "sass": "^1.52.3",
+        "vue-axios": "^3.4.1"
     }
 }

@@ -20,7 +20,8 @@
         "laravel/tinker": "^2.5",
         "optimistdigital/nova-input-filter": "^1.1",
         "silber/bouncer": "v1.0.0-rc.10",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+        "webpatser/laravel-uuid": "^4.0"
     },
     "repositories": [
         {
