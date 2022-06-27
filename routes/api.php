@@ -18,8 +18,15 @@ use App\Http\Controllers\CurrencyController;
 |
 */
 
+Route::post('login', [ApiController::class, 'authenticate']);
+Route::post('register', [AuthController::class, 'register']);
+Route::group(['middleware' => ['jwt.verify']], function() {
+    Route::get('/transactions/{id}', [ListController::class,'userTransactions']);
+});
+
 Route::get('/currencies', [CurrencyController::class,'show']);
 Route::post('/create-acc', [ListController::class,'create']);
+Route::get('/transactions', [ListController::class,'transactions']);
 Route::middleware('auth:sanctum')->get('/user', function (Account $account) {
     return $account;
 });
@@ -33,8 +40,6 @@ Route::get('/list/{id}', [ListController::class,'info']);
 
 
 
-Route::post('login', [AuthController::class, 'login']);
-Route::post('register', [AuthController::class, 'register']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('logout', [AuthController::class, 'logout']);

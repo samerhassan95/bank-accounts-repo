@@ -65,10 +65,10 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        // 'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
-        // 'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
-        // 'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
-        // 'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
-        // 'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
+        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
+        'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
+        'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
+        'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
+        'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
     ];
 }
