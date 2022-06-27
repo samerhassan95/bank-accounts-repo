@@ -91,8 +91,7 @@ class ListController extends Controller
         ->orWhere('u1.id',$id)
         ->orderBy('transactions.created_at')->get();
         return $transactions;
-
-        return 'hello';
+        
 
     }
 
